@@ -1,0 +1,44 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* BODY */
+body {
+    background: #000;      /* Full black background */
+    color: #fff;           /* White text for readability */
+    text-align: center;
+}
+
+/* FULL-WIDTH MASTER ASSETS */
+section img,
+footer img {
+    width: 100%;
+    max-width: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+    border-radius: 0;
+}
+
+/* REMOVE ALL SECTION SPACING FOR IMAGE SECTIONS */
+section,
+footer {
+    margin: 0;
+    padding: 0;
+}
+
+/* PROGRAM GRID — DESKTOP */
+.program-grid {
+    width: 100%;
+    max-width: 1200px;
+    margin: 40px auto;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
