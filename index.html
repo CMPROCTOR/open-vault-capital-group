@@ -134,6 +134,35 @@
         body.program-modal-open {
             overflow: hidden;
         }
+
+        /* Submit Your Deal form — white professional intake experience */
+        .deal-modal { width:min(1120px,calc(100vw - 28px)); max-height:calc(100vh - 28px); margin:auto; padding:0; border:1px solid #d9d9d9; border-radius:8px; background:#fff; color:#111; box-shadow:0 24px 80px rgba(0,0,0,.45); }
+        .deal-modal::backdrop { background:rgba(0,0,0,.82); }
+        .deal-form { position:relative; padding:clamp(24px,4vw,48px); overflow:auto; max-height:calc(100vh - 28px); box-sizing:border-box; }
+        .deal-form__close { position:absolute; top:14px; right:18px; border:0; background:transparent; color:#111; font-size:32px; cursor:pointer; }
+        .deal-form__title { margin:0; text-align:center; color:var(--ov-green); font-size:clamp(30px,5vw,52px); line-height:1; text-transform:uppercase; }
+        .deal-form__intro { text-align:center; margin:10px auto 28px; max-width:720px; color:#222; }
+        .deal-section { border:0; border-top:1px solid rgba(180,211,53,.75); margin:28px 0 0; padding:20px 0 0; }
+        .deal-section legend { padding:0 14px 0 0; color:#111; font-weight:800; text-transform:uppercase; letter-spacing:.03em; }
+        .deal-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:16px 20px; }
+        .deal-grid--3 { grid-template-columns:repeat(3,minmax(0,1fr)); }
+        .deal-field { display:flex; flex-direction:column; gap:6px; }
+        .deal-field--full { grid-column:1/-1; }
+        .deal-field label, .deal-label { font-weight:650; font-size:14px; }
+        .deal-field input, .deal-field select, .deal-field textarea { width:100%; box-sizing:border-box; border:1px solid #cfcfcf; border-radius:4px; background:#fff; color:#111; padding:12px 13px; font:inherit; }
+        .deal-field textarea { min-height:130px; resize:vertical; }
+        .deal-options { display:flex; flex-wrap:wrap; gap:12px 20px; padding-top:8px; }
+        .deal-options label { font-weight:400; }
+        .deal-upload { border:1px dashed #aaa; border-radius:6px; padding:18px; background:#fafafa; }
+        .deal-note { margin:24px 0 14px; padding:15px 18px; border:1px solid rgba(180,211,53,.7); border-radius:5px; font-size:13px; line-height:1.5; }
+        .deal-submit { width:100%; border:0; border-radius:4px; background:var(--ov-green); color:#050505; padding:15px 20px; font-size:18px; font-weight:900; text-transform:uppercase; cursor:pointer; }
+        .deal-secure { margin:10px 0 0; text-align:center; color:#555; font-size:12px; }
+        .netlify-honeypot { position:absolute; overflow:hidden; clip:rect(0 0 0 0); height:1px; width:1px; margin:-1px; padding:0; border:0; }
+        .deal-success { display:none; padding:60px 30px; text-align:center; color:#111; }
+        .deal-success h3 { color:var(--ov-green); font-size:30px; margin:0 0 12px; }
+        .hotspot--cta[href], button.hotspot--cta { cursor:pointer; }
+        @media (max-width:760px) { .deal-grid,.deal-grid--3 { grid-template-columns:1fr; } .deal-form { padding:24px 18px; } }
+
     </style>
 
     <!-- Structured data. All page copy is flattened into the production
@@ -379,7 +408,6 @@
             <div class="program-modal__panel">
                 <button type="button" class="program-modal__close" data-program-close
                     aria-label="Close program summary">&times;</button>
-                <p class="program-modal__eyebrow">Open Vault Capital Group</p>
                 <h3 class="program-modal__title" id="program-modal-title"></h3>
                 <p class="program-modal__summary" id="program-modal-summary"></p>
             </div>
@@ -419,13 +447,74 @@
                                  and unhoverable while the href is absent, and turns
                                  the affordance on the moment one is present.
                                  ============================================================ -->
-                            <a class="hotspot hotspot--cta">Submit Your Deal</a>
+                            <button type="button" class="hotspot hotspot--cta" data-deal-open aria-haspopup="dialog" aria-controls="deal-modal">Submit Your Deal</button>
                         </div>
                     </div>
                     <p class="scroll-cue" data-cue>Swipe to read</p>
                 </div>
             </div>
         </section>
+
+
+
+        <!-- Submit Your Deal intake form. Netlify detects this HTML form at deploy time. -->
+        <dialog class="deal-modal" id="deal-modal" aria-labelledby="deal-form-title">
+            <form class="deal-form" id="deal-form" name="submit-your-deal" method="POST" enctype="multipart/form-data" data-netlify="true" netlify-honeypot="bot-field">
+                <input type="hidden" name="form-name" value="submit-your-deal">
+                <p class="netlify-honeypot" aria-hidden="true"><label>Do not fill this out: <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+                <button type="button" class="deal-form__close" data-deal-close aria-label="Close Submit Your Deal form">&times;</button>
+                <h2 class="deal-form__title" id="deal-form-title">Submit Your Deal</h2>
+                <p class="deal-form__intro"><strong>Tell us about your investment opportunity.</strong><br>Complete the form below and our team will review your financing request.</p>
+
+                <fieldset class="deal-section"><legend>Contact Information</legend><div class="deal-grid">
+                    <div class="deal-field"><label for="full-name">Full Name *</label><input id="full-name" name="full-name" type="text" required autocomplete="name"></div>
+                    <div class="deal-field"><label for="company-name">Company Name</label><input id="company-name" name="company-name" type="text" autocomplete="organization"></div>
+                    <div class="deal-field"><label for="email">Email Address *</label><input id="email" name="email" type="email" required autocomplete="email"></div>
+                    <div class="deal-field"><label for="phone">Phone Number *</label><input id="phone" name="phone" type="tel" required autocomplete="tel"></div>
+                </div></fieldset>
+
+                <fieldset class="deal-section"><legend>Property &amp; Financing</legend><div class="deal-grid">
+                    <div class="deal-field"><label for="loan-program">Loan Program / Financing Needed *</label><select id="loan-program" name="loan-program" required><option value="">Select a Program</option><option>Transactional Funding</option><option>Double Closings</option><option>Fix &amp; Flip</option><option>Buy &amp; Hold</option><option>BRRRR</option><option>Wholesale</option><option>Multifamily</option><option>Commercial</option><option>New Construction</option><option>EMD Funding</option><option>Bridge Loans</option><option>Rental Portfolio</option><option>Cash-Out Refinance</option><option>Gap Funding</option><option>Private Capital</option><option>Creative Financing</option></select></div>
+                    <div class="deal-field"><label for="property-type">Property Type *</label><select id="property-type" name="property-type" required><option value="">Select Property Type</option><option>Single Family</option><option>2–4 Unit</option><option>Multifamily</option><option>Commercial</option><option>Mixed Use</option><option>Land</option><option>Other</option></select></div>
+                    <div class="deal-field deal-field--full"><label for="property-address">Property Address *</label><input id="property-address" name="property-address" type="text" required autocomplete="street-address"></div>
+                </div><div class="deal-grid deal-grid--3" style="margin-top:16px">
+                    <div class="deal-field"><label for="city">City *</label><input id="city" name="city" type="text" required autocomplete="address-level2"></div>
+                    <div class="deal-field"><label for="state">State *</label><input id="state" name="state" type="text" required autocomplete="address-level1"></div>
+                    <div class="deal-field"><label for="zip">ZIP</label><input id="zip" name="zip" type="text" autocomplete="postal-code"></div>
+                    <div class="deal-field"><label for="requested-loan">Requested Loan Amount *</label><input id="requested-loan" name="requested-loan-amount" type="number" min="0" step="1" required></div>
+                    <div class="deal-field"><label for="purchase-price">Purchase Price</label><input id="purchase-price" name="purchase-price" type="number" min="0" step="1"></div>
+                    <div class="deal-field"><label for="as-is-value">Current / As-Is Value</label><input id="as-is-value" name="as-is-value" type="number" min="0" step="1"></div>
+                    <div class="deal-field"><label for="arv">Estimated ARV (if applicable)</label><input id="arv" name="estimated-arv" type="number" min="0" step="1"></div>
+                    <div class="deal-field"><label for="rehab-budget">Rehab / Construction Budget (if applicable)</label><input id="rehab-budget" name="rehab-construction-budget" type="number" min="0" step="1"></div>
+                    <div class="deal-field"><label for="closing-date">Funding Needed By / Closing Date</label><input id="closing-date" name="funding-needed-by" type="date"></div>
+                </div></fieldset>
+
+                <fieldset class="deal-section"><legend>Transaction Details</legend><div class="deal-grid deal-grid--3">
+                    <div><span class="deal-label">Transaction Type *</span><div class="deal-options"><label><input type="radio" name="transaction-type" value="Purchase" required> Purchase</label><label><input type="radio" name="transaction-type" value="Refinance"> Refinance</label></div></div>
+                    <div><span class="deal-label">Property Under Contract? *</span><div class="deal-options"><label><input type="radio" name="under-contract" value="Yes" required> Yes</label><label><input type="radio" name="under-contract" value="No"> No</label></div></div>
+                    <div><span class="deal-label">Do You Currently Own the Property?</span><div class="deal-options"><label><input type="radio" name="currently-own" value="Yes"> Yes</label><label><input type="radio" name="currently-own" value="No"> No</label></div></div>
+                    <div><span class="deal-label">Occupancy</span><div class="deal-options"><label><input type="radio" name="occupancy" value="Occupied"> Occupied</label><label><input type="radio" name="occupancy" value="Vacant"> Vacant</label><label><input type="radio" name="occupancy" value="Not Applicable"> Not Applicable</label></div></div>
+                    <div><span class="deal-label">Existing Mortgage or Lien?</span><div class="deal-options"><label><input type="radio" name="existing-mortgage-lien" value="Yes"> Yes</label><label><input type="radio" name="existing-mortgage-lien" value="No"> No</label></div></div>
+                    <div class="deal-field"><label for="existing-balance">Existing Loan Balance (if applicable)</label><input id="existing-balance" name="existing-loan-balance" type="number" min="0" step="1"></div>
+                </div></fieldset>
+
+                <fieldset class="deal-section"><legend>Borrower Information</legend><div class="deal-grid deal-grid--3">
+                    <div class="deal-field"><label for="credit-range">Estimated Credit Score Range</label><select id="credit-range" name="estimated-credit-score-range"><option value="">Select Credit Score Range</option><option>Below 600</option><option>600–649</option><option>650–699</option><option>700+</option></select></div>
+                    <div class="deal-field"><label for="deals-completed">Investment Deals Previously Completed</label><input id="deals-completed" name="investment-deals-completed" type="number" min="0" step="1"></div>
+                    <div class="deal-field"><label for="entity">Borrowing Entity / LLC</label><input id="entity" name="borrowing-entity" type="text"></div>
+                </div></fieldset>
+
+                <fieldset class="deal-section"><legend>Tell Us About Your Deal *</legend><div class="deal-field"><label class="sr-only" for="deal-summary">Deal Summary</label><textarea id="deal-summary" name="deal-summary" maxlength="1500" required placeholder="Provide details about the property, transaction, financing need, timeline, exit strategy, or anything else we should know."></textarea></div></fieldset>
+
+                <fieldset class="deal-section"><legend>Supporting Documents — Optional</legend><div class="deal-upload"><div class="deal-field"><label for="supporting-documents">Upload supporting documents</label><input id="supporting-documents" name="purchase-contract" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx"><label for="property-photos">Property Photos</label><input id="property-photos" name="property-photos" type="file" accept=".jpg,.jpeg,.png,.pdf"><label for="rehab-document">Rehab / Construction Budget</label><input id="rehab-document" name="rehab-construction-document" type="file" accept=".pdf,.doc,.docx,.xls,.xlsx"><label for="rent-roll">Rent Roll / Existing Loan Statement / Other Supporting Document</label><input id="rent-roll" name="other-supporting-document" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx,.xls,.xlsx"><small>Each upload field accepts one file. Keep the entire submission, including all uploaded files, under 8 MB.</small></div></div></fieldset>
+
+                <p class="deal-note">By submitting this form, you authorize Open Vault Capital Group to contact you regarding your financing request. Submission does not constitute a commitment to lend or guarantee of financing.</p>
+                <button class="deal-submit" type="submit">Submit the Deal</button>
+                <p class="deal-secure">Your information will only be used to evaluate and respond to your financing request.</p>
+            </form>
+            <div class="deal-success" id="deal-success" role="status"><h3>Deal Submitted</h3><p>Thank you. Your financing request has been submitted for review.</p><button type="button" class="deal-submit" data-deal-success-close>Close</button></div>
+        </dialog>
+
 
         <!-- ============================================================
              004 — WHY INVESTORS CHOOSE US
@@ -631,6 +720,55 @@
             }
 
 
+            /* --- Submit Your Deal form ---------------------------------- */
+            var dealModal = document.getElementById("deal-modal");
+            var dealOpen = document.querySelector("[data-deal-open]");
+            var dealClose = document.querySelector("[data-deal-close]");
+            var dealSuccessClose = document.querySelector("[data-deal-success-close]");
+            var dealForm = document.getElementById("deal-form");
+            var dealSuccess = document.getElementById("deal-success");
+
+            function openDealForm() {
+                if (!dealModal) return;
+                if (typeof dealModal.showModal === "function") dealModal.showModal();
+                else dealModal.setAttribute("open", "");
+                document.body.classList.add("program-modal-open");
+            }
+            function closeDealForm() {
+                if (!dealModal) return;
+                if (typeof dealModal.close === "function" && dealModal.open) dealModal.close();
+                else dealModal.removeAttribute("open");
+                document.body.classList.remove("program-modal-open");
+            }
+            if (dealOpen) dealOpen.addEventListener("click", openDealForm);
+            if (dealClose) dealClose.addEventListener("click", closeDealForm);
+            if (dealSuccessClose) dealSuccessClose.addEventListener("click", closeDealForm);
+            if (dealModal) {
+                dealModal.addEventListener("click", function (event) { if (event.target === dealModal) closeDealForm(); });
+                dealModal.addEventListener("close", function () { document.body.classList.remove("program-modal-open"); });
+            }
+            if (dealForm) {
+                dealForm.addEventListener("submit", function (event) {
+                    event.preventDefault();
+                    var submitButton = dealForm.querySelector('[type="submit"]');
+                    if (submitButton) { submitButton.disabled = true; submitButton.textContent = "Submitting..."; }
+                    fetch("/", { method: "POST", body: new FormData(dealForm) })
+                        .then(function (response) {
+                            if (!response.ok) throw new Error("Submission failed");
+                            dealForm.reset();
+                            dealForm.style.display = "none";
+                            if (dealSuccess) dealSuccess.style.display = "block";
+                        })
+                        .catch(function () {
+                            alert("Your submission could not be sent. Please try again or email funding@openvaultcapital.com.");
+                        })
+                        .finally(function () {
+                            if (submitButton) { submitButton.disabled = false; submitButton.textContent = "Submit the Deal"; }
+                        });
+                });
+            }
+
+
             /* --- Entrance reveal ------------------------------------------
                Softens the hand-off between bands so the page reads as one
                continuous progression rather than a stack of separate slabs. */
@@ -736,7 +874,3 @@
 </body>
 
 </html>
-
-    
-
-  
