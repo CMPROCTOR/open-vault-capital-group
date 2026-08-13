@@ -137,6 +137,7 @@
 
         /* Submit Your Deal form — white professional intake experience */
         .deal-modal { width:min(1120px,calc(100vw - 28px)); max-height:calc(100vh - 28px); margin:auto; padding:0; border:1px solid #d9d9d9; border-radius:8px; background:#fff; color:#111; box-shadow:0 24px 80px rgba(0,0,0,.45); }
+        .deal-modal:not([open]) { display:none; }
         .deal-modal::backdrop { background:rgba(0,0,0,.82); }
         .deal-form { position:relative; padding:clamp(24px,4vw,48px); overflow:auto; max-height:calc(100vh - 28px); box-sizing:border-box; }
         .deal-form__close { position:absolute; top:14px; right:18px; border:0; background:transparent; color:#111; font-size:32px; cursor:pointer; }
@@ -874,3 +875,6 @@
 </body>
 
 </html>
+
+  
+           
