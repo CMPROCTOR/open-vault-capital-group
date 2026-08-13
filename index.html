@@ -4,38 +4,739 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Open Vault Capital Group</title>
 
-    <link rel="stylesheet" href="STYLES/style.css">
+    <title>Open Vault Capital Group | Real Estate Investor Funding &amp; Private Capital</title>
+    <meta name="description"
+        content="Open Vault Capital Group provides fast, flexible capital for real estate investors — transactional funding, double closings, fix &amp; flip, buy &amp; hold, BRRRR, wholesale, multifamily, commercial, new construction, EMD funding, bridge loans, rental portfolio, cash-out refinance, gap funding, private capital and creative financing.">
+    <meta name="theme-color" content="#000000">
+    <link rel="canonical" href="https://openvaultcapital.com/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Open Vault Capital Group">
+    <meta property="og:title" content="Open Vault Capital Group | Your Deal, Our Capital">
+    <meta property="og:description"
+        content="Fast, flexible capital solutions for your real estate investment ventures. 16 lending programs for investors — from transactional funding to commercial and creative financing.">
+    <meta property="og:url" content="https://openvaultcapital.com/">
+    <meta property="og:image"
+        content="https://openvaultcapital.com/NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20VAULT%20ASSET%20001.png">
+    <meta property="og:image:width" content="1774">
+    <meta property="og:image:height" content="682">
+    <meta property="og:image:alt" content="Open Vault Capital Group — Your Deal, Our Capital">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Open Vault Capital Group | Your Deal, Our Capital">
+    <meta name="twitter:description"
+        content="Fast, flexible capital solutions for your real estate investment ventures. Unlocking capital for every opportunity.">
+    <meta name="twitter:image"
+        content="https://openvaultcapital.com/NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20VAULT%20ASSET%20001.png">
+
+    <!-- Flags scripting as available before first paint, so the entrance
+         animation only ever engages when JS can actually complete it. With
+         scripting blocked, all content renders unconditionally. -->
+    <script>document.documentElement.className += " js";</script>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- ============================================================
+         PROGRAM CARD INTERACTION — REVIEW COPY ONLY
+         Added without modifying Asset 002 or Edgar's original ZIP.
+         ============================================================ -->
+    <style id="program-card-review-styles">
+        .program-hotspot {
+            position: absolute;
+            display: block;
+            border: 0;
+            margin: 0;
+            padding: 0;
+            background: transparent;
+            color: transparent;
+            font-size: 0;
+            cursor: pointer;
+            touch-action: pan-x pinch-zoom;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .program-hotspot:focus-visible {
+            outline: 2px solid var(--ov-green);
+            outline-offset: 2px;
+        }
+
+        .program-modal {
+            width: min(620px, calc(100vw - 32px));
+            max-height: calc(100vh - 48px);
+            margin: auto;
+            padding: 0;
+            border: 1px solid rgba(233, 178, 51, 0.72);
+            border-radius: 6px;
+            background: #080808;
+            color: var(--ov-ink);
+            box-shadow: 0 24px 80px rgba(0, 0, 0, 0.72);
+        }
+
+        .program-modal::backdrop {
+            background: rgba(0, 0, 0, 0.82);
+        }
+
+        .program-modal__panel {
+            position: relative;
+            padding: clamp(28px, 5vw, 46px);
+        }
+
+        .program-modal__eyebrow {
+            margin: 0 44px 10px 0;
+            color: var(--ov-green);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .program-modal__title {
+            margin: 0 44px 16px 0;
+            color: var(--ov-gold);
+            font-size: clamp(24px, 5vw, 36px);
+            line-height: 1.08;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+        }
+
+        .program-modal__summary {
+            margin: 0;
+            color: #ffffff;
+            font-size: clamp(15px, 2vw, 18px);
+            line-height: 1.6;
+        }
+
+        .program-modal__close {
+            position: absolute;
+            top: 14px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(180, 211, 53, 0.45);
+            border-radius: 50%;
+            background: transparent;
+            color: #ffffff;
+            font-size: 27px;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .program-modal__close:hover,
+        .program-modal__close:focus-visible {
+            border-color: var(--ov-green);
+            color: var(--ov-green);
+        }
+
+        body.program-modal-open {
+            overflow: hidden;
+        }
+    </style>
+
+    <!-- Structured data. All page copy is flattened into the production
+         artwork, so this block is the primary machine-readable description of
+         the business and its programs for search engines and AI agents. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FinancialService",
+      "@id": "https://openvaultcapital.com/#organization",
+      "name": "Open Vault Capital Group, LLC",
+      "alternateName": "Open Vault Capital Group",
+      "slogan": "Your Deal, Our Capital",
+      "description": "Open Vault Capital Group provides fast, flexible capital solutions for real estate investment ventures, connecting investors with a network of funding tailored to their deal.",
+      "url": "https://openvaultcapital.com/",
+      "email": "funding@openvaultcapital.com",
+      "telephone": "+1-801-317-8007",
+      "logo": "https://openvaultcapital.com/NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20VAULT%20ASSET%20001.png",
+      "image": "https://openvaultcapital.com/NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20VAULT%20ASSET%20001.png",
+      "areaServed": "US",
+      "knowsAbout": [
+        "Real estate investment financing",
+        "Hard money lending",
+        "Private capital",
+        "Transactional funding"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Our Loan Programs",
+        "itemListElement": [
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Transactional Funding" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Double Closings" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Fix & Flip" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Buy & Hold" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "BRRRR" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Wholesale" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Multifamily" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "New Construction" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "EMD Funding" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Bridge Loans" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Rental Portfolio" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Cash-Out Refinance" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Gap Funding" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Private Capital" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Creative Financing" } }
+        ]
+      }
+    }
+    </script>
 </head>
 
 <body>
 
-    <!-- HERO -->
-    <section class="section-001">
-        <img src="NEW MASTER PRODUCTION ASSETS/NEW MASTER PRODUCTION VAULT ASSET 001.png" alt="Hero">
-    </section>
+    <a class="skip-link" href="#loan-programs">Go To Loan Programs</a>
 
-    <!-- OUR LOAN PROGRAMS -->
-    <section class="section-002">
-        <img src="NEW MASTER PRODUCTION ASSETS/NEW MASTER PRODUCTION OUR LOAN ASSET 002.png" alt="Our Loan Programs">
-    </section>
+    <main id="top">
 
-    <!-- SUBMIT THE DEAL -->
-    <section class="section-003">
-        <img src="NEW MASTER PRODUCTION ASSETS/NEW MASTER PRODUCTION SUBMIT THE DEAL ASSET 003.png" alt="Submit Your Deal">
-    </section>
+        <!-- ============================================================
+             001 — HERO
+             The dominant visual of the page. Full-bleed, edge to edge.
+             ============================================================ -->
+        <section class="band band--hero" aria-labelledby="hero-heading">
+            <h1 class="sr-only" id="hero-heading">
+                Open Vault Capital Group — Your Deal, Our Capital. Unlocking capital for every opportunity.
+            </h1>
+            <picture>
+                <!-- Drop a portrait re-lay of this composition here to serve a
+                     purpose-built mobile crop instead of the CSS framing:
+                <source media="(max-width: 640px)"
+                        srcset="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20VAULT%20ASSET%20001-MOBILE.png"> -->
+                <img class="asset"
+                    src="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20VAULT%20ASSET%20001.png"
+                    width="1774" height="682" fetchpriority="high" decoding="async"
+                    alt="Open Vault Capital Group. Your Deal, Our Capital. Unlocking capital for every opportunity.">
+            </picture>
+        </section>
 
-    <!-- WHY INVESTORS -->
-    <section class="section-004">
-        <img src="NEW MASTER PRODUCTION ASSETS/NEW MASTER PRODUCTION WHY INVESTORS ASSET 004.png" alt="Why Investors">
-    </section>
+        <!-- ============================================================
+             002 — OUR LOAN PROGRAMS
+             ============================================================ -->
+        <section class="band band--programs" id="loan-programs" aria-labelledby="programs-heading">
+            <div class="band__inner">
+                <h2 class="sr-only" id="programs-heading">Our Loan Programs</h2>
+                <ul class="sr-only">
+                    <li>Transactional Funding</li>
+                    <li>Double Closings</li>
+                    <li>Fix &amp; Flip</li>
+                    <li>Buy &amp; Hold</li>
+                    <li>BRRRR</li>
+                    <li>Wholesale</li>
+                    <li>Multifamily</li>
+                    <li>Commercial</li>
+                    <li>New Construction</li>
+                    <li>EMD Funding</li>
+                    <li>Bridge Loans</li>
+                    <li>Rental Portfolio</li>
+                    <li>Cash-Out Refinance</li>
+                    <li>Gap Funding</li>
+                    <li>Private Capital</li>
+                    <li>Creative Financing</li>
+                </ul>
 
-    <!-- FOOTER -->
-    <footer class="section-005">
-        <img src="NEW MASTER PRODUCTION ASSETS/NEW MASTER PRODUCTION FOOTER ASSET 005.png" alt="Footer">
+                <div class="reveal">
+                    <div class="asset-scroll" data-center-scroll>
+                        <div class="asset-frame">
+                            <picture>
+                                <!-- <source media="(max-width: 900px)"
+                                        srcset="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20OUR%20LOAN%20ASSET%20002-MOBILE.png"> -->
+                                <img class="asset"
+                                    src="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20OUR%20LOAN%20ASSET%20002.png"
+                                    width="1780" height="715" loading="lazy" decoding="async"
+                                    alt="Our Loan Programs: Transactional Funding, Double Closings, Fix and Flip, Buy and Hold, BRRRR, Wholesale, Multifamily, Commercial, New Construction, EMD Funding, Bridge Loans, Rental Portfolio, Cash-Out Refinance, Gap Funding, Private Capital, and Creative Financing.">
+                            </picture>
+                            <!-- 16 invisible program-card hotspots. Coordinates are
+                                 percentages of the approved 1780 x 715 Asset 002. -->
+                                <button type="button" class="program-hotspot"
+                                    data-program="transactional-funding"
+                                    aria-label="View Transactional Funding program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:7.079%; top:31.888%; width:8.708%; height:27.972%;">
+                                    Transactional Funding
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="double-closings"
+                                    aria-label="View Double Closings program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:17.921%; top:31.888%; width:8.596%; height:27.972%;">
+                                    Double Closings
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="fix-flip"
+                                    aria-label="View Fix & Flip program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:28.876%; top:31.888%; width:8.596%; height:27.972%;">
+                                    Fix & Flip
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="buy-hold"
+                                    aria-label="View Buy & Hold program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:39.775%; top:31.888%; width:8.652%; height:27.972%;">
+                                    Buy & Hold
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="brrrr"
+                                    aria-label="View BRRRR program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:50.730%; top:31.888%; width:8.596%; height:27.972%;">
+                                    BRRRR
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="wholesale"
+                                    aria-label="View Wholesale program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:61.798%; top:31.888%; width:8.708%; height:27.972%;">
+                                    Wholesale
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="multifamily"
+                                    aria-label="View Multifamily program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:72.865%; top:31.888%; width:8.483%; height:27.972%;">
+                                    Multifamily
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="commercial"
+                                    aria-label="View Commercial program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:83.596%; top:31.888%; width:8.596%; height:27.972%;">
+                                    Commercial
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="new-construction"
+                                    aria-label="View New Construction program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:7.079%; top:67.413%; width:8.708%; height:27.692%;">
+                                    New Construction
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="emd-funding"
+                                    aria-label="View EMD Funding program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:17.921%; top:67.413%; width:8.596%; height:27.692%;">
+                                    EMD Funding
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="bridge-loans"
+                                    aria-label="View Bridge Loans program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:28.876%; top:67.413%; width:8.596%; height:27.692%;">
+                                    Bridge Loans
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="rental-portfolio"
+                                    aria-label="View Rental Portfolio program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:39.775%; top:67.413%; width:8.652%; height:27.692%;">
+                                    Rental Portfolio
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="cash-out-refinance"
+                                    aria-label="View Cash-Out Refinance program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:50.730%; top:67.413%; width:8.596%; height:27.692%;">
+                                    Cash-Out Refinance
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="gap-funding"
+                                    aria-label="View Gap Funding program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:61.798%; top:67.413%; width:8.708%; height:27.692%;">
+                                    Gap Funding
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="private-capital"
+                                    aria-label="View Private Capital program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:72.865%; top:67.413%; width:8.483%; height:27.692%;">
+                                    Private Capital
+                                </button>
+                                <button type="button" class="program-hotspot"
+                                    data-program="creative-financing"
+                                    aria-label="View Creative Financing program summary"
+                                    aria-haspopup="dialog" aria-controls="program-modal"
+                                    style="left:83.596%; top:67.413%; width:8.596%; height:27.692%;">
+                                    Creative Financing
+                                </button>
+
+                        </div>
+                    </div>
+                    <p class="scroll-cue" data-cue>Swipe to view all 16 programs</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             LOAN PROGRAM SUMMARY MODAL — REVIEW COPY ONLY
+             One approved summary appears at a time.
+             ============================================================ -->
+        <dialog class="program-modal" id="program-modal" aria-labelledby="program-modal-title"
+            aria-describedby="program-modal-summary">
+            <div class="program-modal__panel">
+                <button type="button" class="program-modal__close" data-program-close
+                    aria-label="Close program summary">&times;</button>
+                <p class="program-modal__eyebrow">Open Vault Capital Group</p>
+                <h3 class="program-modal__title" id="program-modal-title"></h3>
+                <p class="program-modal__summary" id="program-modal-summary"></p>
+            </div>
+        </dialog>
+
+        <!-- ============================================================
+             003 — SUBMIT THE DEAL
+             ============================================================ -->
+        <section class="band band--submit" id="submit-your-deal" aria-labelledby="submit-heading">
+            <div class="band__inner">
+                <h2 class="sr-only" id="submit-heading">
+                    Open the vault. Secure funding for your next investment. Fast, flexible capital solutions for your
+                    real estate investment ventures.
+                </h2>
+
+                <div class="reveal">
+                    <div class="asset-scroll" data-center-scroll>
+                        <div class="asset-frame">
+                            <picture>
+                                <!-- <source media="(max-width: 900px)"
+                                        srcset="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20SUBMIT%20THE%20DEAL%20ASSET%20003-MOBILE.png"> -->
+                                <img class="asset"
+                                    src="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20SUBMIT%20THE%20DEAL%20ASSET%20003.png"
+                                    width="3844" height="1022" loading="lazy" decoding="async"
+                                    alt="Open the vault. Secure funding for your next investment. Fast, flexible capital solutions for your real estate investment ventures. Submit your deal.">
+                            </picture>
+                            <!-- ============================================================
+                                 CTA HOTSPOT — awaiting its destination.
+
+                                 This sits pixel-aligned over the "SUBMIT YOUR DEAL"
+                                 button baked into the asset. It is deliberately
+                                 left with NO href until the real intake form URL is
+                                 supplied.
+
+                                 TO ACTIVATE: add href="https://…" below. Nothing
+                                 else needs to change — CSS keeps the hotspot inert
+                                 and unhoverable while the href is absent, and turns
+                                 the affordance on the moment one is present.
+                                 ============================================================ -->
+                            <a class="hotspot hotspot--cta">Submit Your Deal</a>
+                        </div>
+                    </div>
+                    <p class="scroll-cue" data-cue>Swipe to read</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================================
+             004 — WHY INVESTORS CHOOSE US
+             ============================================================ -->
+        <section class="band band--why" id="why-investors" aria-labelledby="why-heading">
+            <div class="band__inner">
+                <h2 class="sr-only" id="why-heading">Why Investors Choose Us</h2>
+                <dl class="sr-only">
+                    <dt>Capital Connections</dt>
+                    <dd>Access to a network of funding solutions tailored to your deal.</dd>
+                    <dt>Investor Focused</dt>
+                    <dd>We understand investment opportunities and work to match the right capital.</dd>
+                    <dt>Responsive</dt>
+                    <dd>We review submissions promptly so you can keep your deal moving.</dd>
+                </dl>
+
+                <div class="reveal">
+                    <div class="asset-scroll" data-center-scroll>
+                        <div class="asset-frame">
+                            <picture>
+                                <!-- <source media="(max-width: 900px)"
+                                        srcset="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20WHY%20INVESTORS%20ASSET%20004-MOBILE.png"> -->
+                                <img class="asset"
+                                    src="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20WHY%20INVESTORS%20ASSET%20004.png"
+                                    width="1810" height="475" loading="lazy" decoding="async"
+                                    alt="Why investors choose us. Capital Connections: access to a network of funding solutions tailored to your deal. Investor Focused: we understand investment opportunities and work to match the right capital. Responsive: we review submissions promptly so you can keep your deal moving.">
+                            </picture>
+                        </div>
+                    </div>
+                    <p class="scroll-cue" data-cue>Swipe to view all three</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ================================================================
+         005 — FOOTER
+         ================================================================ -->
+    <footer class="band band--footer" aria-label="Contact and legal">
+        <div class="band__inner">
+            <div class="sr-only">
+                <p>Open Vault Capital Group</p>
+                <p>Email: <a href="mailto:funding@openvaultcapital.com">funding@openvaultcapital.com</a></p>
+                <p>Phone: <a href="tel:+18013178007">+1 (801) 317-8007</a></p>
+                <p>&copy; 2026 Open Vault Capital Group, LLC. All rights reserved.</p>
+            </div>
+
+            <div class="reveal">
+                <div class="asset-scroll" data-center-scroll>
+                    <div class="asset-frame">
+                        <picture>
+                            <!-- <source media="(max-width: 900px)"
+                                    srcset="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20FOOTER%20ASSET%20005-MOBILE.png"> -->
+                            <img class="asset"
+                                src="NEW%20MASTER%20PRODUCTION%20ASSETS/NEW%20MASTER%20PRODUCTION%20FOOTER%20ASSET%20005.png"
+                                width="2045" height="178" loading="lazy" decoding="async"
+                                alt="Open Vault Capital Group. Email funding@openvaultcapital.com. Phone +1 (801) 317-8007. Copyright 2026 Open Vault Capital Group, LLC. All rights reserved.">
+                        </picture>
+                        <a class="hotspot hotspot--email" href="mailto:funding@openvaultcapital.com"
+                            aria-label="Email funding@openvaultcapital.com">Email us</a>
+                        <a class="hotspot hotspot--phone" href="tel:+18013178007"
+                            aria-label="Call +1 801 317 8007">Call us</a>
+                    </div>
+                </div>
+                <!-- No cue here: the email and phone are already centred in
+                     view, and a fourth pill at the foot of the page reads as
+                     clutter rather than help. -->
+            </div>
+        </div>
     </footer>
+
+    <script>
+        (function () {
+            "use strict";
+
+            var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+            /* --- Loan program card summaries ----------------------------
+               Asset 002 remains one untouched image. Sixteen invisible
+               buttons sit over the exact card rectangles and open one shared
+               dialog populated with the approved summary for that card. */
+            var programSummaries = {
+                "transactional-funding": {
+                    title: "Transactional Funding",
+                    summary: "Short-term capital for investors who need funds to complete a time-sensitive acquisition before a planned resale or exit. Designed to provide temporary acquisition capital while preserving investor liquidity."
+                },
+                "double-closings": {
+                    title: "Double Closings",
+                    summary: "Short-term financing for investors completing a purchase and subsequent resale through two separate closings. Designed for transactions requiring capital to complete the initial acquisition before the second sale closes."
+                },
+                "fix-flip": {
+                    title: "Fix & Flip",
+                    summary: "Short-term financing for investors acquiring properties that require renovation before resale. Designed to support acquisition and eligible improvement costs while preserving working capital throughout the project."
+                },
+                "buy-hold": {
+                    title: "Buy & Hold",
+                    summary: "Financing for investors acquiring properties for long-term ownership and rental income. Designed to support portfolio growth, property stabilization, recurring cash flow, and long-term appreciation."
+                },
+                "brrrr": {
+                    title: "BRRRR",
+                    summary: "Financing supporting the Buy, Rehab, Rent, Refinance, Repeat strategy. Designed to help investors acquire and improve rental properties, establish income, refinance when appropriate, and redeploy capital into additional investments."
+                },
+                "wholesale": {
+                    title: "Wholesale",
+                    summary: "Financing solutions for wholesalers and investors acquiring or controlling properties for resale to another buyer. Designed to support time-sensitive transactions where capital may be required to facilitate acquisition or closing."
+                },
+                "multifamily": {
+                    title: "Multifamily",
+                    summary: "Financing for the acquisition, refinance, renovation, or stabilization of multifamily properties. Designed for investors seeking to expand income-producing portfolios and build long-term cash-flow potential."
+                },
+                "commercial": {
+                    title: "Commercial",
+                    summary: "Financing for the acquisition, refinance, improvement, or repositioning of commercial real estate. Specialized solutions may also be available for qualified properties facing foreclosure or financial distress, including foreclosure bailout, bankruptcy exit, and DIP financing."
+                },
+                "new-construction": {
+                    title: "New Construction",
+                    summary: "Financing for investors and developers constructing new residential or commercial properties. Designed to provide capital for eligible acquisition, development, and construction costs throughout various stages of project completion."
+                },
+                "emd-funding": {
+                    title: "EMD Funding",
+                    summary: "Short-term funding designed to help investors satisfy Earnest Money Deposit requirements when securing property under contract. Useful for time-sensitive transactions requiring capital to demonstrate commitment to the purchase."
+                },
+                "bridge-loans": {
+                    title: "Bridge Loans",
+                    summary: "Short-term financing designed to bridge an immediate capital need until a property is sold, refinanced, or transitioned to permanent financing. Suitable for investors requiring speed and flexibility during a transitional period."
+                },
+                "rental-portfolio": {
+                    title: "Rental Portfolio",
+                    summary: "Financing for investors who own or are acquiring multiple rental properties. Designed to support portfolio expansion, refinance existing holdings, or consolidate multiple investment properties within an appropriate financing structure."
+                },
+                "cash-out-refinance": {
+                    title: "Cash-Out Refinance",
+                    summary: "Financing that allows qualified investors to refinance an investment property and access a portion of available equity. Proceeds may support additional acquisitions, property improvements, or other investment-related needs."
+                },
+                "gap-funding": {
+                    title: "Gap Funding",
+                    summary: "Supplemental financing designed to address a capital shortfall between primary financing and the funds required to complete an eligible real estate transaction."
+                },
+                "private-capital": {
+                    title: "Private Capital",
+                    summary: "Capital from private lending sources for real estate transactions requiring speed, flexibility, or customized structuring beyond conventional financing options. Availability depends on the transaction and applicable lender requirements."
+                },
+                "creative-financing": {
+                    title: "Creative Financing",
+                    summary: "Alternative financing structures for real estate transactions that may not fit traditional lending models. Solutions may utilize different funding strategies based on the property, transaction structure, borrower circumstances, and available capital sources."
+                }
+            };
+
+            var programModal = document.getElementById("program-modal");
+            var programModalTitle = document.getElementById("program-modal-title");
+            var programModalSummary = document.getElementById("program-modal-summary");
+            var programButtons = document.querySelectorAll(".program-hotspot");
+            var programClose = document.querySelector("[data-program-close]");
+            var lastProgramTrigger = null;
+
+            function openProgramSummary(key, trigger) {
+                var program = programSummaries[key];
+                if (!program || !programModal) return;
+
+                programModalTitle.textContent = program.title;
+                programModalSummary.textContent = program.summary;
+                lastProgramTrigger = trigger;
+                document.body.classList.add("program-modal-open");
+
+                if (typeof programModal.showModal === "function") {
+                    programModal.showModal();
+                } else {
+                    programModal.setAttribute("open", "");
+                }
+            }
+
+            function closeProgramSummary() {
+                if (!programModal) return;
+                if (typeof programModal.close === "function" && programModal.open) {
+                    programModal.close();
+                } else {
+                    programModal.removeAttribute("open");
+                    document.body.classList.remove("program-modal-open");
+                    if (lastProgramTrigger) lastProgramTrigger.focus();
+                }
+            }
+
+            Array.prototype.forEach.call(programButtons, function (button) {
+                button.addEventListener("click", function () {
+                    openProgramSummary(button.dataset.program, button);
+                });
+            });
+
+            if (programClose) {
+                programClose.addEventListener("click", closeProgramSummary);
+            }
+
+            if (programModal) {
+                programModal.addEventListener("click", function (event) {
+                    if (event.target === programModal) closeProgramSummary();
+                });
+
+                programModal.addEventListener("close", function () {
+                    document.body.classList.remove("program-modal-open");
+                    if (lastProgramTrigger) lastProgramTrigger.focus();
+                });
+            }
+
+
+            /* --- Entrance reveal ------------------------------------------
+               Softens the hand-off between bands so the page reads as one
+               continuous progression rather than a stack of separate slabs. */
+            var panels = document.querySelectorAll(".reveal");
+
+            function revealAll() {
+                Array.prototype.forEach.call(panels, function (el) {
+                    el.classList.add("is-visible");
+                });
+            }
+
+            if (reduced || !("IntersectionObserver" in window)) {
+                revealAll();
+            } else {
+                /* No negative rootMargin. The footer is the last element in
+                   the document, so shrinking the root from the bottom can put
+                   it permanently out of range on short viewports — it would
+                   then never reveal and the section would stay blank. A tiny
+                   threshold against the unmodified viewport is safe for
+                   every band, including the last one. */
+                var io = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add("is-visible");
+                            io.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.02 });
+
+                Array.prototype.forEach.call(panels, function (el) {
+                    io.observe(el);
+                });
+
+                /* Failsafe: content must never be withheld by an animation.
+                   Anything still hidden shortly after load is shown outright. */
+                window.setTimeout(revealAll, 2500);
+            }
+
+            /* --- Centred scroll start --------------------------------------
+               Every supporting asset is a centre-weighted composition. When
+               its frame is narrower than the artwork, open on the middle so
+               the focal point — headline, CTA button, contact block — is what
+               the visitor sees first. */
+            var frames = document.querySelectorAll("[data-center-scroll]");
+
+            /* Centring assigns scrollLeft, which itself fires a scroll event.
+               That must not be mistaken for the visitor scrolling, or the cue
+               would dismiss itself before it was ever seen. */
+            function centre(frame) {
+                var slack = frame.scrollWidth - frame.clientWidth;
+                if (slack > 0) {
+                    frame.dataset.autoScrolling = "1";
+                    frame.scrollLeft = slack / 2;
+                    window.requestAnimationFrame(function () {
+                        delete frame.dataset.autoScrolling;
+                    });
+                }
+            }
+
+            Array.prototype.forEach.call(frames, function (frame) {
+                centre(frame);
+
+                // Re-centre once the lazy-loaded artwork reports its real size.
+                var img = frame.querySelector("img");
+                if (img && !img.complete) {
+                    img.addEventListener("load", function () { centre(frame); }, { once: true });
+                }
+
+                var cue = frame.parentNode.querySelector("[data-cue]");
+                if (cue) {
+                    syncCue(frame, cue);
+
+                    // The cue has done its job the moment the visitor scrolls.
+                    frame.addEventListener("scroll", function () {
+                        if (frame.dataset.autoScrolling) return;
+                        cue.classList.add("is-dismissed");
+                    }, { passive: true });
+                }
+            });
+
+            /* Only invite a swipe when enough is actually hidden to justify
+               it. Just past the mask edges, the artwork is effectively all in
+               view and the prompt would be misleading. */
+            function syncCue(frame, cue) {
+                var slack = frame.scrollWidth - frame.clientWidth;
+                cue.classList.toggle("is-unneeded", slack < 90);
+            }
+
+            var resizeTimer;
+            window.addEventListener("resize", function () {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(function () {
+                    Array.prototype.forEach.call(frames, function (frame) {
+                        centre(frame);
+                        var cue = frame.parentNode.querySelector("[data-cue]");
+                        if (cue) syncCue(frame, cue);
+                    });
+                }, 150);
+            }, { passive: true });
+        })();
+    </script>
 
 </body>
 
 </html>
+
+    
+
+  
