@@ -511,3 +511,18 @@ a {
         display: none !important;
     }
 }
+/* FINAL MASTER LANDING PAGE */
+.master-landing-page {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #000;
+}
+
+.master-landing-page img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
