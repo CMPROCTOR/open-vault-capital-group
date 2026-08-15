@@ -517,8 +517,10 @@ a {
     margin: 0;
     padding: 0;
     background: #000;
+overflow: hidden;
+aspect-ratio: 852 / 1715;
 }
-.master-landing-page img {
+   .master-landing-image {
     display: block;
     width: 100%;
     height: auto;
