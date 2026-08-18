@@ -1,14 +1,16 @@
 /* ==========================================================================
    OPEN VAULT CAPITAL GROUP
-   Presentation layer for the approved master production assets.
+   Presentation layer for the single master production landing page.
 
-   PRINCIPLE: every approved asset is rendered unmodified. Hierarchy is
-   created purely through scale, containment, spacing and depth — never by
-   editing, cropping or recolouring the artwork itself.
+   PRINCIPLE: the approved artwork is rendered unmodified, edge to edge, at
+   one continuous scale. Everything interactive is an invisible overlay
+   anchored to the artwork in percentage terms, so it tracks the image at
+   every viewport size without a single fixed pixel offset.
 
-   Because all five assets sit on a pure-black field and the page canvas is
-   pure black, an inset asset reads as part of one continuous surface. That
-   is what lets sections 002-005 recede without any visible frame or edge.
+   The master image is a true composite of the five approved production
+   assets at their native resolution — it is not upscaled from a smaller
+   render, which is what keeps the small type in the loan-program tiles and
+   the "Why Investors Choose Us" cards sharp.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
@@ -16,38 +18,11 @@
    -------------------------------------------------------------------------- */
 :root {
     /* Brand — sampled from the approved assets. Used only for interface
-       affordances (focus rings, scroll cue). No artwork is recoloured. */
+       affordances (focus rings, hover states). No artwork is recoloured. */
     --ov-black: #000000;
     --ov-green: #b4d335;
     --ov-gold: #e9b233;
     --ov-ink: #ffffff;
-
-    /* Section width ladder — the core of the visual hierarchy.
-       Hero is full-bleed; everything below is progressively contained.
-       "Submit the Deal" is deliberately the widest supporting band so the
-       primary conversion point keeps more presence than its neighbours. */
-    --w-programs: 1180px;
-    --w-submit: 1360px;
-    --w-why: 1240px;
-    --w-footer: 1440px;
-
-    /* Vertical rhythm */
-    --gutter: clamp(16px, 4vw, 48px);
-    /* The assets carry their own internal margins, so band padding compounds
-       with artwork whitespace. Tuned against the rendered page, not in the
-       abstract. */
-    --band-y: clamp(52px, 7vw, 116px);
-    --band-y-tight: clamp(40px, 5.5vw, 84px);
-
-    /* Depth — recession of supporting content against the black canvas.
-       Recession uses brightness(), never opacity. brightness() is
-       multiplicative, so the assets' pure #000 field stays exactly #000 at
-       any value and only the luminous elements (icons, rules, type) dim.
-       opacity() would blend the field toward the page behind it and outline
-       every asset with a visible rectangle. */
-    --recede-programs: 0.84;
-    --recede-why: 0.93;
-    --recede-footer: 0.76;
 
     --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
 }
@@ -88,9 +63,9 @@ a {
     color: inherit;
 }
 
-/* Screen-reader-only content. Every word of this page's copy lives inside
-   flattened images, so this is the only machine-readable copy of it — it
-   serves assistive technology, search crawlers and AI agents alike. */
+/* Screen-reader-only content. Every word of this page's copy lives inside the
+   flattened master artwork, so this is the only machine-readable copy of it —
+   it serves assistive technology, search crawlers and AI agents alike. */
 .sr-only {
     position: absolute;
     width: 1px;
@@ -129,350 +104,268 @@ a {
 }
 
 /* --------------------------------------------------------------------------
-   3. BAND — the shared section shell
+   3. THE MASTER LANDING PAGE
+   One approved image, full bleed, rendered whole. No crop, no fixed
+   aspect-ratio box — the image's own intrinsic ratio sets the height, so the
+   footer can never be clipped off the bottom.
    -------------------------------------------------------------------------- */
-.band {
-    position: relative;
-    background: var(--ov-black);
-    padding-block: var(--band-y);
-}
-
-.band__inner {
-    width: 100%;
-    max-width: var(--band-w, 1240px);
-    margin-inline: auto;
-    padding-inline: var(--gutter);
-}
-
-/* The approved asset itself — always rendered whole, never cropped on
-   desktop, never altered. */
-.asset {
-    width: 100%;
-    height: auto;
-}
-
-/* Wrapper that matches the asset box exactly, so interactive hotspots can be
-   anchored to the artwork in percentage terms and stay aligned at every size. */
-.asset-frame {
+.master-landing-page {
     position: relative;
     display: block;
     width: 100%;
+    background: var(--ov-black);
 }
 
-/* --------------------------------------------------------------------------
-   4. SECTION 001 — HERO
-   Remains the single dominant, edge-to-edge visual on the page.
-   -------------------------------------------------------------------------- */
-.band--hero {
-    padding-block: 0;
-    /* Full-bleed regardless of any ancestor constraint */
-    width: 100vw;
-    max-width: 100vw;
-    margin-inline: calc(50% - 50vw);
-}
-
-.band--hero .asset {
+.master-landing-image {
+    display: block;
     width: 100%;
+    height: auto;
+    /* Reserve the exact box before the artwork arrives, so nothing shifts and
+       the hotspots are correctly placed from the first paint. The portrait
+       master has its own ratio; it is restated at the breakpoint below. */
+    aspect-ratio: 2048 / 3624;
 }
 
-/* Soft dissolve from the hero into the black canvas below. This is what
-   turns a hard banner edge into a transition, without adding any rule,
-   divider or graphic element that isn't already in the approved design. */
-.band--hero::after {
-    content: "";
+/* Scroll target for the skip link, parked on the loan-programs band. */
+.master-anchor {
     position: absolute;
-    inset-inline: 0;
-    bottom: -1px;
-    height: clamp(60px, 9vw, 150px);
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.75) 55%, #000 100%);
-    pointer-events: none;
+    left: 0;
+    top: 39.5%;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/* One overlay per master. Only the group matching the artwork on screen is
+   rendered; display:none takes the other out of the tab order and the
+   accessibility tree, so the two can never both be live. */
+.hotspots {
+    position: absolute;
+    inset: 0;
+}
+
+.hotspots--narrow {
+    display: none;
 }
 
 /* --------------------------------------------------------------------------
-   5. SECTION 002 — OUR LOAN PROGRAMS
-   Reduced in scale, recessed in depth, and given the most breathing room on
-   the page so it reads as supporting content rather than a second hero.
+   4. HOTSPOTS
+   Invisible controls laid over the artwork. Every rectangle is expressed as a
+   percentage of the master image, so the overlay scales in lockstep with the
+   artwork at any viewport width — there is nothing to re-measure when the
+   page resizes.
    -------------------------------------------------------------------------- */
-/* NOTE: every band stays pure #000. The assets are pure #000 to their edges,
-   so any tint, gradient or lift applied to a band would immediately outline
-   the artwork sitting on it. Separation is carried entirely by scale,
-   spacing and the hero's dissolve. */
-.band--programs {
-    --band-w: var(--w-programs);
-    padding-block: calc(var(--band-y) * 1.15);
-}
-
-.band--programs .asset {
-    filter: brightness(var(--recede-programs));
-    transition: filter 0.6s var(--ease);
-}
-
-/* Bringing the card field forward on intent rewards exploration while
-   keeping its resting state quiet. */
-.band--programs:hover .asset,
-.band--programs:focus-within .asset {
-    filter: brightness(1);
-}
-
-/* --------------------------------------------------------------------------
-   6. SECTION 003 — SUBMIT THE DEAL
-   The conversion point. Held at full luminance and the widest supporting
-   measure so it lifts out of the recessive content around it.
-   -------------------------------------------------------------------------- */
-.band--submit {
-    --band-w: var(--w-submit);
-    padding-block: var(--band-y-tight);
-}
-
-/* Invisible hotspot over the "SUBMIT YOUR DEAL" button baked into the asset.
-   Coordinates are percentages of the artwork, so they hold at any scale. */
 .hotspot {
     position: absolute;
     display: block;
-    border-radius: 2px;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    border-radius: 3px;
+    background: transparent;
+    color: transparent;
+    font-size: 0;
+    line-height: 0;
     text-indent: -9999px;
     overflow: hidden;
-    transition: box-shadow 0.35s var(--ease), transform 0.35s var(--ease);
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+    transition: box-shadow 0.3s var(--ease);
 }
 
-.hotspot[href]:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 0 2px rgba(180, 211, 53, 0.55), 0 12px 40px rgba(180, 211, 53, 0.22);
+.hotspot:focus-visible {
+    outline: 2px solid var(--ov-green);
+    outline-offset: 2px;
 }
 
-/* A hotspot with no href has no destination yet. Keep it fully inert rather
-   than offering a hover glow and a pointer over something that cannot go
-   anywhere — a dead affordance reads as a broken page. Adding the href is the
-   only step needed to bring it to life. */
-.hotspot:not([href]) {
+/* A link hotspot with no href has no destination yet. Keep it inert rather
+   than offering a pointer over something that cannot go anywhere. Scoped to
+   anchors: a <button> hotspot never carries an href and must stay live. */
+a.hotspot:not([href]) {
     pointer-events: none;
     cursor: default;
 }
 
-.hotspot--cta {
-    left: 37.4%;
-    top: 70.5%;
-    width: 26.2%;
-    height: 24%;
+/* Program tiles: a restrained inset glow on intent, so exploring the field
+   feels responsive without drawing a box over the approved artwork. */
+.hotspot--program:hover,
+.hotspot--program:focus-visible {
+    box-shadow: inset 0 0 0 1px rgba(233, 178, 51, 0.9),
+                0 0 22px rgba(233, 178, 51, 0.28);
 }
 
-.hotspot--email {
-    left: 38.4%;
-    top: 24%;
-    width: 24%;
-    height: 28%;
+/* The conversion point earns a warmer response than the tiles. */
+.hotspot--cta:hover,
+.hotspot--cta:focus-visible {
+    box-shadow: 0 0 0 2px rgba(180, 211, 53, 0.75),
+                0 10px 38px rgba(180, 211, 53, 0.3);
 }
 
-.hotspot--phone {
-    left: 38.4%;
-    top: 61%;
-    width: 18%;
-    height: 28%;
-}
-
-/* --------------------------------------------------------------------------
-   7. SECTION 004 — WHY INVESTORS CHOOSE US
-   -------------------------------------------------------------------------- */
-.band--why {
-    --band-w: var(--w-why);
-}
-
-.band--why .asset {
-    filter: brightness(var(--recede-why));
-    transition: filter 0.6s var(--ease);
-}
-
-.band--why:hover .asset,
-.band--why:focus-within .asset {
-    filter: brightness(1);
+.hotspot--contact:hover,
+.hotspot--contact:focus-visible {
+    box-shadow: 0 0 0 1px rgba(180, 211, 53, 0.5);
 }
 
 /* --------------------------------------------------------------------------
-   8. SECTION 005 — FOOTER
-   The quietest band on the page — closing the progression rather than
-   competing with it.
+   5. PROGRAM SUMMARY MODAL
    -------------------------------------------------------------------------- */
-.band--footer {
-    --band-w: var(--w-footer);
-    padding-block: clamp(40px, 5vw, 78px) clamp(28px, 4vw, 52px);
+.program-modal {
+    width: min(620px, calc(100vw - 32px));
+    max-height: calc(100vh - 48px);
+    margin: auto;
+    padding: 0;
+    border: 1px solid rgba(233, 178, 51, 0.72);
+    border-radius: 6px;
+    background: #080808;
+    color: var(--ov-ink);
+    box-shadow: 0 24px 80px rgba(0, 0, 0, 0.72);
 }
 
-.band--footer .asset {
-    filter: brightness(var(--recede-footer));
-    transition: filter 0.6s var(--ease);
-}
-
-.band--footer:hover .asset,
-.band--footer:focus-within .asset {
-    filter: brightness(1);
-}
-
-/* Hairline that closes the page. Fades in from nothing at both ends so it
-   reads as a horizon, not a border. */
-.band--footer::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: min(var(--w-footer), calc(100% - var(--gutter) * 2));
-    height: 1px;
-    background: linear-gradient(to right, rgba(233, 178, 51, 0) 0%, rgba(233, 178, 51, 0.28) 50%, rgba(233, 178, 51, 0) 100%);
-}
-
-/* --------------------------------------------------------------------------
-   9. ENTRANCE — smooths the progression between bands on scroll
-   -------------------------------------------------------------------------- */
-/* Content is visible by default and only hidden once scripting is confirmed
-   present (the `js` class is set by an inline script in <head>). If JS is
-   blocked or fails, every section still renders — the animation is polish,
-   never a gate on the content. */
-.js .reveal {
-    opacity: 0;
-    transform: translateY(26px);
-    transition: opacity 0.9s var(--ease), transform 0.9s var(--ease);
-    will-change: opacity, transform;
-}
-
-.js .reveal.is-visible {
-    opacity: 1;
-    transform: none;
-}
-
-/* --------------------------------------------------------------------------
-   10. RESPONSIVE
-   The approved assets are flattened raster compositions with fixed internal
-   column counts (002 is 8-up, 004 is 3-up, 005 is 3-up). They cannot reflow.
-   Scaling them to fit a phone renders their labels illegibly small, so below
-   the legibility threshold each supporting asset is presented in a
-   horizontally scrollable frame at a readable minimum size instead. The
-   artwork is preserved exactly; only its viewport is constrained.
-
-   The <picture> elements in the markup are pre-wired with commented mobile
-   <source> slots — dropping in portrait re-lays of the same approved
-   compositions retires the scroll behaviour with no code change.
-   -------------------------------------------------------------------------- */
-
-/* Hidden by default; enabled only inside the narrow-viewport block below.
-   Declared here, ahead of that block — at equal specificity the later rule
-   wins, so this must not sit after it. */
-.scroll-cue {
+.program-modal:not([open]) {
     display: none;
 }
 
-/* --- Tablet ------------------------------------------------------------- */
-@media (max-width: 1180px) {
-    :root {
-        --w-programs: 100%;
-        --w-submit: 100%;
-        --w-why: 100%;
-        --w-footer: 100%;
-    }
+.program-modal::backdrop {
+    background: rgba(0, 0, 0, 0.82);
+}
 
-    .band--programs {
-        padding-block: var(--band-y);
+.program-modal__panel {
+    position: relative;
+    padding: clamp(28px, 5vw, 46px);
+}
+
+.program-modal__title {
+    margin: 0 44px 16px 0;
+    color: var(--ov-gold);
+    font-size: clamp(24px, 5vw, 36px);
+    line-height: 1.08;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.program-modal__summary {
+    margin: 0;
+    color: #ffffff;
+    font-size: clamp(15px, 2vw, 18px);
+    line-height: 1.6;
+}
+
+.program-modal__close {
+    position: absolute;
+    top: 14px;
+    right: 16px;
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(180, 211, 53, 0.45);
+    border-radius: 50%;
+    background: transparent;
+    color: #ffffff;
+    font-size: 27px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.program-modal__close:hover,
+.program-modal__close:focus-visible {
+    border-color: var(--ov-green);
+    color: var(--ov-green);
+}
+
+body.program-modal-open {
+    overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   6. SUBMIT YOUR DEAL — white professional intake form
+   -------------------------------------------------------------------------- */
+.deal-modal {
+    width: min(1120px, calc(100vw - 28px));
+    max-height: calc(100vh - 28px);
+    margin: auto;
+    padding: 0;
+    border: 1px solid #d9d9d9;
+    border-radius: 8px;
+    background: #fff;
+    color: #111;
+    box-shadow: 0 24px 80px rgba(0, 0, 0, .45);
+}
+
+.deal-modal:not([open]) { display: none; }
+.deal-modal::backdrop { background: rgba(0, 0, 0, .82); }
+
+.deal-form { position: relative; padding: clamp(24px, 4vw, 48px); overflow: auto; max-height: calc(100vh - 28px); }
+.deal-form__close { position: absolute; top: 14px; right: 18px; border: 0; background: transparent; color: #111; font-size: 32px; line-height: 1; cursor: pointer; }
+.deal-form__title { margin: 0; text-align: center; color: #4e6b0d; font-size: clamp(30px, 5vw, 52px); line-height: 1; text-transform: uppercase; }
+.deal-form__intro { text-align: center; margin: 10px auto 28px; max-width: 720px; color: #222; }
+.deal-section { border: 0; border-top: 1px solid rgba(180, 211, 53, .75); margin: 28px 0 0; padding: 20px 0 0; }
+.deal-section legend { padding: 0 14px 0 0; color: #111; font-weight: 800; text-transform: uppercase; letter-spacing: .03em; }
+.deal-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px 20px; }
+.deal-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.deal-field { display: flex; flex-direction: column; gap: 6px; }
+.deal-field--full { grid-column: 1/-1; }
+.deal-field label, .deal-label { font-weight: 650; font-size: 14px; }
+.deal-field input, .deal-field select, .deal-field textarea { width: 100%; border: 1px solid #cfcfcf; border-radius: 4px; background: #fff; color: #111; padding: 12px 13px; font: inherit; }
+.deal-field textarea { min-height: 130px; resize: vertical; }
+.deal-options { display: flex; flex-wrap: wrap; gap: 12px 20px; padding-top: 8px; }
+.deal-options label { font-weight: 400; }
+.deal-upload { border: 1px dashed #aaa; border-radius: 6px; padding: 18px; background: #fafafa; }
+.deal-note { margin: 24px 0 14px; padding: 15px 18px; border: 1px solid rgba(180, 211, 53, .7); border-radius: 5px; font-size: 13px; line-height: 1.5; }
+.deal-submit { width: 100%; border: 0; border-radius: 4px; background: var(--ov-green); color: #050505; padding: 15px 20px; font-size: 18px; font-weight: 900; text-transform: uppercase; cursor: pointer; }
+.deal-secure { margin: 10px 0 0; text-align: center; color: #555; font-size: 12px; }
+.netlify-honeypot { position: absolute; overflow: hidden; clip: rect(0 0 0 0); height: 1px; width: 1px; margin: -1px; padding: 0; border: 0; }
+.deal-success { display: none; padding: 60px 30px; text-align: center; color: #111; }
+.deal-success h3 { color: #4e6b0d; font-size: 30px; margin: 0 0 12px; }
+
+@media (max-width: 760px) {
+    .deal-grid, .deal-grid--3 { grid-template-columns: 1fr; }
+    .deal-form { padding: 24px 18px; }
+}
+
+/* --------------------------------------------------------------------------
+   7. RESPONSIVE
+
+   A flattened composition cannot reflow, so the page carries two masters: the
+   approved landscape composition, and a portrait one built from the same five
+   assets for phones. One breakpoint swaps both the artwork and its overlay
+   together, so a hit area can never end up over the wrong master.
+   -------------------------------------------------------------------------- */
+
+/* Between the two masters the landscape tiles drop below a comfortable touch
+   target, so the hit areas are grown outward from their printed rectangles.
+   The gutter between tiles is ~2.2% of page width, so this cannot reach a
+   neighbour. The artwork is untouched; only the invisible overlay changes. */
+@media (min-width: 701px) and (max-width: 900px) {
+    .hotspot--program {
+        margin: -0.35% -0.7%;
+        padding: 0.35% 0.7%;
+        box-sizing: content-box;
     }
 }
 
-/* --- Below the legibility threshold ------------------------------------- */
-@media (max-width: 900px) {
-
-    /* Scrollable viewport onto the unmodified asset */
-    .asset-scroll {
-        overflow-x: auto;
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: none;
-        /* Edge fades signal that content continues past both sides */
-        -webkit-mask-image: linear-gradient(to right, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
-        mask-image: linear-gradient(to right, transparent 0, #000 22px, #000 calc(100% - 22px), transparent 100%);
+/* --- Phone: portrait master --------------------------------------------- */
+@media (max-width: 700px) {
+    .master-landing-image {
+        aspect-ratio: 1080 / 8683;
     }
 
-    .asset-scroll::-webkit-scrollbar {
+    .hotspots--wide {
         display: none;
     }
 
-    .asset-scroll .asset-frame {
-        width: auto;
-    }
-
-    /* Minimum widths at which each composition's smallest type stays readable */
-    .band--programs .asset-scroll .asset-frame { min-width: 860px; }
-    .band--submit   .asset-scroll .asset-frame { min-width: 700px; }
-    .band--why      .asset-scroll .asset-frame { min-width: 780px; }
-    .band--footer   .asset-scroll .asset-frame { min-width: 720px; }
-
-    .asset-scroll .asset {
-        width: 100%;
-        max-width: none;
-    }
-
-    /* Scroll cue — retires itself permanently once the user scrolls. */
-    .scroll-cue {
+    .hotspots--narrow {
         display: block;
-        margin: 18px auto 0;
-        width: max-content;
-        padding: 7px 14px;
-        border: 1px solid rgba(180, 211, 53, 0.35);
-        border-radius: 999px;
-        color: var(--ov-green);
-        font-size: 10px;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-        opacity: 0.85;
-        transition: opacity 0.5s var(--ease);
     }
 
-    .scroll-cue.is-dismissed {
-        opacity: 0;
-        pointer-events: none;
-    }
-
-    /* Set by script when the frame hides too little to be worth mentioning —
-       promising hidden content that isn't really there reads as broken. */
-    .scroll-cue.is-unneeded {
-        display: none;
-    }
-
-    /* Recession is a desktop-scale device. On a phone the artwork is already
-       small, so it is restored to full luminance for legibility. */
-    .band--programs .asset,
-    .band--why .asset,
-    .band--footer .asset {
-        filter: none;
-    }
-}
-
-/* --- Phone --------------------------------------------------------------- */
-@media (max-width: 640px) {
-
-    /* The hero is the one asset that must stay legible without scrolling.
-       At 2.6:1 against a portrait phone there is no framing that holds both
-       the brand lockup and the vault, so the framing favours the lockup and
-       headline — the parts that have to be read. Anchored hard left so the
-       "OV" mark and the word "YOUR" are never clipped.
-
-       The vault imagery is lost at this width; a purpose-built portrait
-       export dropped into the <picture> slot in index.html restores it.
-       This is presentation framing only — the asset itself is untouched. */
-    .band--hero .asset {
-        height: clamp(240px, 58vw, 380px);
-        object-fit: cover;
-        object-position: left center;
-    }
-
-    .band {
-        padding-block: clamp(44px, 11vw, 72px);
-    }
-
-    .band--footer {
-        padding-block: clamp(36px, 9vw, 60px) clamp(24px, 7vw, 40px);
+    .master-anchor {
+        top: 7.2%;
     }
 }
 
 /* --------------------------------------------------------------------------
-   11. PREFERENCES
+   8. PREFERENCES
    -------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
     html {
@@ -486,48 +379,11 @@ a {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
-
-    .js .reveal {
-        opacity: 1;
-        transform: none;
-    }
 }
 
 @media print {
-    .band {
-        padding-block: 12px;
-        background: #fff;
-    }
-
-    .asset,
-    .js .reveal {
-        opacity: 1 !important;
-        filter: none !important;
-        transform: none !important;
-    }
-
-    .scroll-cue,
-    .skip-link {
+    .skip-link,
+    .hotspot {
         display: none !important;
     }
-}
-/* FINAL MASTER LANDING PAGE */
-.master-landing-page {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    background: #000;
-overflow: hidden;
-aspect-ratio: 852 / 1600;
-}
-   .master-landing-image {
-    display: block;
-    width: 100%;
-    height: auto;
-    margin: 0;
-    padding: 0;
-}
-/* Hide legacy 001–005 sections now replaced by the final master landing page */
-.legacy-sections {
-    display: none !important;
 }

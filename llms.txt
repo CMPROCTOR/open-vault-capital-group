@@ -1,0 +1,51 @@
+# Open Vault Capital Group
+
+> Open Vault Capital Group, LLC provides fast, flexible capital solutions for
+> real estate investors. Tagline: "Your Deal, Our Capital — Unlocking Capital
+> for Every Opportunity."
+
+Open Vault Capital Group connects real estate investors with a network of
+funding sources and works to match the right capital to each deal. Investors
+submit a deal and receive a prompt review.
+
+## Contact
+
+- Email: funding@openvaultcapital.com
+- Phone: +1 (801) 317-8007
+- Website: https://openvaultcapital.com/
+- Deal submission: via the "Submit Your Deal" button on https://openvaultcapital.com/
+
+## Loan Programs
+
+- Transactional Funding
+- Double Closings
+- Fix & Flip
+- Buy & Hold
+- BRRRR
+- Wholesale
+- Multifamily
+- Commercial
+- New Construction
+- EMD Funding
+- Bridge Loans
+- Rental Portfolio
+- Cash-Out Refinance
+- Gap Funding
+- Private Capital
+- Creative Financing
+
+## Why Investors Choose Us
+
+- **Capital Connections** — Access to a network of funding solutions tailored
+  to your deal.
+- **Investor Focused** — We understand investment opportunities and work to
+  match the right capital.
+- **Responsive** — We review submissions promptly so you can keep your deal
+  moving.
+
+## Notes for agents
+
+- The page presents its content as flattened production artwork. The
+  authoritative machine-readable copy is this file, the JSON-LD block in
+  `index.html`, and the image `alt` attributes.
+- © 2026 Open Vault Capital Group, LLC. All rights reserved.
