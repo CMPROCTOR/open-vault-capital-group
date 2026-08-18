@@ -123,14 +123,14 @@ a {
     /* Reserve the exact box before the artwork arrives, so nothing shifts and
        the hotspots are correctly placed from the first paint. The portrait
        master has its own ratio; it is restated at the breakpoint below. */
-    aspect-ratio: 2048 / 3624;
+    aspect-ratio: 2048 / 3690;
 }
 
 /* Scroll target for the skip link, parked on the loan-programs band. */
 .master-anchor {
     position: absolute;
     left: 0;
-    top: 39.5%;
+    top: 36.8%;
     width: 1px;
     height: 1px;
     overflow: hidden;
@@ -146,6 +146,36 @@ a {
 
 .hotspots--narrow {
     display: none;
+}
+
+/* --------------------------------------------------------------------------
+   3a. RECESSION PANELS
+   The two card fields are pushed back so they read as contained and secondary
+   to the hero.
+
+   A panel is plain black at low opacity. Because it composites over artwork
+   whose surround is pure #000, the result is exactly filter: brightness(x) —
+   black stays black, so only the luminous parts (icons, rules, type) dim, and
+   the panel's own left and right edges are invisible. Its top and bottom edges
+   are parked in the middle of the black runs that bracket each field, so there
+   is no seam there either. Nothing is baked into the artwork; the degree of
+   recession is the opacity below and can be retuned without regenerating the
+   master image.
+   -------------------------------------------------------------------------- */
+.veil {
+    position: absolute;
+    background: var(--ov-black);
+    pointer-events: none;
+    transition: opacity 0.55s var(--ease);
+}
+
+/* Exploring a field brings it part of the way forward. The tiles are
+   clickable, so intent deserves a response — but the recession is only
+   softened, never lifted, or the section would jump back to competing with
+   the hero on hover. */
+.hotspots:has(.hotspot--program:hover) .veil--programs,
+.hotspots:has(.hotspot--program:focus-visible) .veil--programs {
+    opacity: 0.1 !important;
 }
 
 /* --------------------------------------------------------------------------
@@ -348,7 +378,7 @@ body.program-modal-open {
 /* --- Phone: portrait master --------------------------------------------- */
 @media (max-width: 700px) {
     .master-landing-image {
-        aspect-ratio: 1080 / 8683;
+        aspect-ratio: 1080 / 8729;
     }
 
     .hotspots--wide {
@@ -360,7 +390,7 @@ body.program-modal-open {
     }
 
     .master-anchor {
-        top: 7.2%;
+        top: 7.3%;
     }
 }
 
